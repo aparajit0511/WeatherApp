@@ -12,6 +12,7 @@ import "./App.css";
 import { TailSpin } from "react-loader-spinner";
 
 export default function WeatherApp() {
+  // contains city data
   var data = require("./cities-fr.json");
 
   const [DropDownValues, setDropDownValues] = useState([]);
@@ -48,6 +49,8 @@ export default function WeatherApp() {
     setDropDownValues(options);
   }, []);
 
+  // contains 5 day weather forecast
+
   async function FiveDayForecast(params) {
     const { latitude, longitude, id } = params;
     const key = "e063e76bab70475f898e3df76e8ed596";
@@ -63,6 +66,7 @@ export default function WeatherApp() {
       .then((result) => setThreeDayForecast((prevdata) => [result]));
   }
 
+  // contains weather data
   async function FetchWeatherData(params) {
     const { latitude, longitude, id } = params;
     const key = "e063e76bab70475f898e3df76e8ed596";
@@ -110,6 +114,7 @@ export default function WeatherApp() {
 
   console.log("ThreeDayForecast", ThreeDayForecast);
 
+  // useEffect to get the 3 days data from the api
   useEffect(() => {
     if (ThreeDayForecast && ThreeDayForecast[0]) {
       console.log("cityname", ThreeDayForecast[0].city.name);
